@@ -26,7 +26,6 @@ This is a simple backend Restful API app to demo a shipping system.
 2. Install a local web server like XAMPP. You can download XAMPP from [here](https://www.apachefriends.org/).
 
 3. Start your local server. Refer to the XAMPP documentation for detailed instructions.
-![alt text](image-1.png)
 
 4. Install npm packages by running the following command in the project directory: `npm install`
 
