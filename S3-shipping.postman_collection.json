@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "1285ee49-7d76-4dc3-a2e2-2e162b1ca088",
+		"name": "S3-shipping",
+		"description": "Demo apis for test shipments project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22821159"
+	},
+	"item": [
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/auth/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "address",
+					"item": [
+						{
+							"name": "addresses",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/address/all?page=1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"address",
+										"all"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"country\": \"united state\",\r\n    \"city\": \"Obour\",\r\n    \"street\": \"El-shabab\",\r\n    \"mobile\": \"01116515445\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/address/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"address",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/address/delete/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"address",
+										"delete",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "service",
+					"item": [
+						{
+							"name": "services",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/service/all",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"service",
+										"all"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "shipment",
+					"item": [
+						{
+							"name": "create shipment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"origin\": {\r\n        \"name\": \"Yassin Mohamed\",\r\n        \"email\": \"yassin@gmail.com\",\r\n        \"country\": \"Egypt\",\r\n        \"city\": \"Obour\",\r\n        \"street\": \"El-shabab\",\r\n        \"mobile\": \"01116515441\"\r\n    },\r\n    \"destination\": {\r\n        \"name\": \"Yossef Mohamed\",\r\n        \"email\": \"yossef@gmail.com\",\r\n        \"country\": \"Saudi Arabia\",\r\n        \"city\": \"Makka\",\r\n        \"street\": \"El-yasmin\",\r\n        \"mobile\": \"01116515442\"\r\n    },\r\n    \"service\": 1,\r\n    \"packages\": [\r\n        {\r\n            \"weight\": 5,\r\n            \"width\": 15,\r\n            \"length\": 15,\r\n            \"height\": 15\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/shipment/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"shipment",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "shipments",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/shipment/all?page=1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"shipment",
+										"all"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "shipment",
+					"item": [
+						{
+							"name": "delete shipment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/admin/shipment/delete/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"admin",
+										"shipment",
+										"delete",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "shipments",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/admin/shipment/all?page=1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"admin",
+										"shipment",
+										"all"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create shipment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"origin\": {\r\n        \"name\": \"Yassin Mohamed\",\r\n        \"email\": \"yassin@gmail.com\",\r\n        \"country\": \"Egypt\",\r\n        \"city\": \"Obour\",\r\n        \"street\": \"El-shabab\",\r\n        \"mobile\": \"01116515441\"\r\n    },\r\n    \"destination\": {\r\n        \"name\": \"Yossef Mohamed\",\r\n        \"email\": \"yossef@gmail.com\",\r\n        \"country\": \"Saudi Arabia\",\r\n        \"city\": \"Makka\",\r\n        \"street\": \"El-yasmin\",\r\n        \"mobile\": \"01116515442\"\r\n    },\r\n    \"service\": 1,\r\n    \"packages\": [\r\n        {\r\n            \"weight\": 5,\r\n            \"width\": 15,\r\n            \"length\": 15,\r\n            \"height\": 15\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/shipment/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"shipment",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/admin/users/all?page=1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"admin",
+										"users",
+										"all"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000/"
+		}
+	]
+}
