@@ -1,0 +1,70 @@
+//🧩Don't Edit this file.✨Generated in Sun Apr 07 2024 14:23:20 GMT+0200 (Eastern European Standard Time)✨
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  User      User[]
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String     @unique
+  password  String
+  role_id   Int
+  createdAt DateTime   @default(now())
+  role      Role       @relation(fields: [role_id], references: [id])
+  Shipment  Shipment[]
+  Address   Address[]
+}
+
+model Address {
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  name      String
+  email     String
+  country   String
+  city      String
+  street    String
+  mobile    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [user_id], references: [id])
+}
+
+model Package {
+  id        Int      @id @default(autoincrement())
+  weight    Int
+  width     Int
+  length    Int
+  height    Int
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id      Int    @id @default(autoincrement())
+  name    String
+  company String
+  price   Int
+  days    Int
+}
+
+model Shipment {
+  id          Int      @id @default(autoincrement())
+  user_id     Int
+  origin      Json
+  destination Json
+  service     Int
+  packages    Json
+  user        User     @relation(fields: [user_id], references: [id])
+  createdAt   DateTime @default(now())
+}
